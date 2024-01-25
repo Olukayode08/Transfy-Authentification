@@ -5,6 +5,8 @@ import { FiEye } from 'react-icons/fi'
 import { FiEyeOff } from 'react-icons/fi'
 import { RegisterForm } from '../context/FormContext'
 import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+
 const Signup = () => {
   const {
     toggleVisibility,
@@ -14,7 +16,6 @@ const Signup = () => {
     handleChange,
     formData,
     signUp,
-    error,
   } = useContext(RegisterForm)
 
   return (
@@ -27,7 +28,9 @@ const Signup = () => {
             </section>
           </Logo>
           <form onSubmit={signUp}>
-            <h3>{error}</h3>
+            <div>
+              <ToastContainer />
+            </div>
             <h3>Register for an account</h3>
             <input
               type='text'

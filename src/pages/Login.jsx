@@ -5,9 +5,10 @@ import logo from '../assets/logo-white.png'
 import { FiEye } from 'react-icons/fi'
 import { FiEyeOff } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 const Login = () => {
-  const { toggleVisibility, visible, formData, handleChange, signIn, error } =
+  const { toggleVisibility, visible, formData, handleChange, signIn } =
     useContext(RegisterForm)
 
   return (
@@ -20,8 +21,10 @@ const Login = () => {
             </section>
           </Logo>
           <form onSubmit={signIn}>
+            <div>
+              <ToastContainer />
+            </div>
             <h3>Login to your account</h3>
-            <h3>{error}</h3>
 
             <input
               type='email'

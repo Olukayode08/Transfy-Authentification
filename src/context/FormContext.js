@@ -6,8 +6,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
-// import { ToastContainer, toast } from 'react-toastify'
-// import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
 const RegisterForm = createContext()
 
@@ -39,10 +39,17 @@ const FormContext = ({ children }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
+  const notify = (error) => {
+    toast(error)
+  }
+  const notifyMessage = (message) => {
+    toast(message)
+  }
+
   function signUp(e) {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
-      return setError('Passwords do not match')
+      return notify('Passwords do not match!')
     }
     setError('')
     createUserWithEmailAndPassword(
@@ -55,49 +62,48 @@ const FormContext = ({ children }) => {
         setIsAuthenticated(true)
         setCurrentUser(user)
         navigate('/dashboard')
+        setFormData('')
       })
       .catch((error) => {
-        setError('Failed to create account')
+        notify('Failed to create account! Weak password')
       })
   }
 
   function signIn(e) {
     e.preventDefault()
-      setError('')
-      signInWithEmailAndPassword(
-        firebaseAuth,
-        formData.email,
-        formData.password
-      ).then((userCredential) => {
+    setError('')
+    signInWithEmailAndPassword(firebaseAuth, formData.email, formData.password)
+      .then((userCredential) => {
         const user = userCredential.user
         setIsAuthenticated(true)
         setCurrentUser(user)
         navigate('/dashboard')
+        setFormData('')
       })
-      .catch(()=>{
-        setError('Failed to Login')
+      .catch(() => {
+        notify('Failed to Login! Invalid email or password')
       })
   }
 
   function handleLogout(e) {
-      setError('')
-      signOut(firebaseAuth)
-      setIsAuthenticated(false)
-      navigate('/')
+    setError('')
+    signOut(firebaseAuth)
+    setIsAuthenticated(false)
+    navigate('/')
   }
 
   function resetPassword(e) {
     e.preventDefault()
-      setMessage('')
-      setError('')
-      sendPasswordResetEmail(firebaseAuth, formData.email)
-        .then((userCredential) => {
-          // const user = userCredential.user
-          setMessage('Check your mail to reset password')
-        })
-        .catch(() => {
-          setError('Failed to Reset Password')
-        })
+    setMessage('')
+    setError('')
+    sendPasswordResetEmail(firebaseAuth, formData.email)
+      .then((userCredential) => {
+        // const user = userCredential.user
+        notifyMessage('Check your mail to reset password')
+      })
+      .catch(() => {
+        notify('Failed to Reset Password')
+      })
   }
 
   return (

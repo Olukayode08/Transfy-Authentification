@@ -3,9 +3,10 @@ import { RegisterForm } from '../context/FormContext'
 import styled from 'styled-components'
 import logo from '../assets/logo-white.png'
 import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 const ForgotPassword = () => {
-  const { formData, handleChange, resetPassword, message, error } =
+  const { formData, handleChange, resetPassword, message } =
     useContext(RegisterForm)
 
   return (
@@ -18,9 +19,9 @@ const ForgotPassword = () => {
             </section>
           </Logo>
           <form onSubmit={resetPassword}>
-            <h3>{message}</h3>
-            <h3>{error}</h3>
-
+            <div>
+              <ToastContainer />
+            </div>
             <h3>Forgot Password</h3>
             <input
               type='email'
