@@ -20,10 +20,7 @@ const ForgotPassword = () => {
           </Logo>
           <form onSubmit={resetPassword}>
             <div>
-              <ToastContainer
-                stacked
-                toastClassName='dark-toast'
-              />
+              <ToastContainer stacked toastClassName='dark-toast' />
             </div>
             <h3>Forgot Password</h3>
             <input
@@ -110,6 +107,16 @@ const Wrapper = styled.section`
     color: #0062ff;
     font-size: 12px;
     margin: 15px 0;
+  }
+  @media screen and (max-width: 320px) {
+    main {
+      height: 100%;
+    }
+  }
+  @media screen and (max-width: 340px) {
+    form {
+      width: 300px;
+    }
   }
 `
 

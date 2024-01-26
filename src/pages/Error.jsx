@@ -53,9 +53,8 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     margin: 20px 0;
-    width: 350px;
     border-radius: 20px;
-    padding: 25px 15px;
+    padding: 25px;
   }
   h3 {
     font-size: 25px;
@@ -67,6 +66,11 @@ const Wrapper = styled.section`
     color: #0062ff;
     font-size: 12px;
     margin: 15px 0;
+  }
+  @media screen and (max-width: 320px) {
+    main {
+      height: 100%;
+    }
   }
 `
 

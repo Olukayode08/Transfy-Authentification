@@ -26,10 +26,16 @@ const FormContext = ({ children }) => {
   }
   const navigate = useNavigate()
 
-  const handleClick = ()=>{
-    setFormData('')
+  const handleClick = () => {
+    setFormData({
+      username: '',
+      email: '',
+      country: '',
+      phone: '',
+      password: '',
+      confirmPassword: '',
+    })
   }
-
 
   const [formData, setFormData] = useState({
     username: '',
@@ -100,6 +106,7 @@ const FormContext = ({ children }) => {
       .then((userCredential) => {
         // const user = userCredential.user
         notify('Check your mail to reset password')
+        setFormData('')
       })
       .catch(() => {
         notify('Failed to Reset Password. Invalid Email')

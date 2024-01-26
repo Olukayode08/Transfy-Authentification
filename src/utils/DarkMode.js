@@ -17,13 +17,17 @@ const DarkMode = () => {
   )
 }
 const Wrapper = styled.section`
-position: relative;
+  position: relative;
   main {
-    position: fixed;
+    position: absolute;
     top: 15px;
     right: 50%;
     z-index: 20;
-
+  }
+  @media screen and (max-width: 600px) {
+    main {
+      right: 15px;
+    }
   }
 `
 export default DarkMode

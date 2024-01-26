@@ -30,7 +30,7 @@ const Signup = () => {
           </Logo>
           <form onSubmit={signUp}>
             <div>
-              <ToastContainer />
+              <ToastContainer stacked toastClassName='dark-toast' />
             </div>
             <h3>Register for an account</h3>
             <input
@@ -206,6 +206,22 @@ const Wrapper = styled.section`
     text-decoration: none;
     color: #0062ff;
     font-size: 12px;
+  }
+  @media screen and (max-width: 350px) {
+    main {
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    form {
+      width: 370px;
+    }
+  }
+  @media screen and (max-width: 370px) {
+    form {
+      width: 300px;
+    }
   }
 `
 export default Signup

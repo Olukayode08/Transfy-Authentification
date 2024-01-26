@@ -22,7 +22,7 @@ const Login = () => {
           </Logo>
           <form onSubmit={signIn}>
             <div>
-              <ToastContainer />
+              <ToastContainer stacked toastClassName='dark-toast' />
             </div>
             <h3>Login to your account</h3>
 
@@ -144,6 +144,18 @@ const Wrapper = styled.section`
     color: #0062ff;
     font-size: 12px;
     margin: 15px 0;
+  }
+
+  @media screen and (max-width: 320px) {
+    main {
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 340px) {
+    form {
+      width: 300px;
+    }
   }
 `
 
