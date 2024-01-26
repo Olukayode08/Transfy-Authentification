@@ -45,4 +45,14 @@ body {
   color: #fff;
 }
 
+#dark .dark-toast {
+  background: #212529;
+  color: #fff;
+}
+
+#light .dark-toast {
+  background: #fff;
+  color: #000;
+}
+
 /*  */

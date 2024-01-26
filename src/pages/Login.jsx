@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 const Login = () => {
-  const { toggleVisibility, visible, formData, handleChange, signIn } =
+  const { toggleVisibility, visible, handleClick, formData, handleChange, signIn } =
     useContext(RegisterForm)
 
   return (
@@ -55,10 +55,10 @@ const Login = () => {
             <button type='submit' className='button'>
               Login
             </button>
-            <Link to='/forgot-password' className='link'>
+            <Link onClick={handleClick} to='/forgot-password' className='link'>
               Can’t login? Forget password
             </Link>
-            <Link to='/sign-up' className='link'>
+            <Link onClick={handleClick} to='/sign-up' className='link'>
               Don't have an account yet? Register
             </Link>
           </form>

@@ -17,7 +17,6 @@ const FormContext = ({ children }) => {
   const [error, setError] = useState('')
   const [currentUser, setCurrentUser] = useState()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [message, setMessage] = useState('')
 
   const toggleVisibility = () => {
     setVisible(!visible)
@@ -26,6 +25,11 @@ const FormContext = ({ children }) => {
     setConfirmVisible(!confirmVisible)
   }
   const navigate = useNavigate()
+
+  const handleClick = ()=>{
+    setFormData('')
+  }
+
 
   const [formData, setFormData] = useState({
     username: '',
@@ -41,9 +45,6 @@ const FormContext = ({ children }) => {
 
   const notify = (error) => {
     toast(error)
-  }
-  const notifyMessage = (message) => {
-    toast(message)
   }
 
   function signUp(e) {
@@ -94,15 +95,14 @@ const FormContext = ({ children }) => {
 
   function resetPassword(e) {
     e.preventDefault()
-    setMessage('')
     setError('')
     sendPasswordResetEmail(firebaseAuth, formData.email)
       .then((userCredential) => {
         // const user = userCredential.user
-        notifyMessage('Check your mail to reset password')
+        notify('Check your mail to reset password')
       })
       .catch(() => {
-        notify('Failed to Reset Password')
+        notify('Failed to Reset Password. Invalid Email')
       })
   }
 
@@ -123,7 +123,7 @@ const FormContext = ({ children }) => {
           currentUser,
           isAuthenticated,
           resetPassword,
-          message,
+          handleClick,
         }}
       >
         {children}

@@ -16,6 +16,7 @@ const Signup = () => {
     handleChange,
     formData,
     signUp,
+    handleClick,
   } = useContext(RegisterForm)
 
   return (
@@ -114,7 +115,7 @@ const Signup = () => {
             <button type='submit' className='button'>
               Register
             </button>
-            <Link to='/' className='link'>
+            <Link to='/' onClick={handleClick} className='link'>
               Already have an account? Log in
             </Link>
           </form>

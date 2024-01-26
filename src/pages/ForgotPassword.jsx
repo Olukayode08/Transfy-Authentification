@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 const ForgotPassword = () => {
-  const { formData, handleChange, resetPassword, message } =
+  const { formData, handleChange, resetPassword, handleClick } =
     useContext(RegisterForm)
 
   return (
@@ -20,7 +20,10 @@ const ForgotPassword = () => {
           </Logo>
           <form onSubmit={resetPassword}>
             <div>
-              <ToastContainer />
+              <ToastContainer
+                stacked
+                toastClassName='dark-toast'
+              />
             </div>
             <h3>Forgot Password</h3>
             <input
@@ -34,10 +37,10 @@ const ForgotPassword = () => {
             <button type='submit' className='button'>
               Reset Password
             </button>
-            <Link to='/' className='link'>
+            <Link onClick={handleClick} to='/' className='link'>
               Login
             </Link>
-            <Link to='/sign-up' className='link'>
+            <Link onClick={handleClick} to='/sign-up' className='link'>
               Don't have an account yet? Register
             </Link>
           </form>
