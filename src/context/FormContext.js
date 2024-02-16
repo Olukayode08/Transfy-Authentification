@@ -45,6 +45,12 @@ const FormContext = ({ children }) => {
     password: '',
     confirmPassword: '',
   })
+
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    return passwordRegex.test(password)
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -55,7 +61,11 @@ const FormContext = ({ children }) => {
 
   function signUp(e) {
     e.preventDefault()
-    if (formData.password !== formData.confirmPassword) {
+    if (!validatePassword(formData.password)) {
+      return notify(
+        'Password must contain at least 8 characters with uppercase, lowercase, numbers, and symbols.'
+      )
+    } else if (formData.password !== formData.confirmPassword) {
       return notify('Passwords do not match!')
     }
     setError('')
@@ -72,7 +82,7 @@ const FormContext = ({ children }) => {
         setFormData('')
       })
       .catch((error) => {
-        notify('Failed to create account! Weak password')
+        notify('Failed to create account!')
       })
   }
 
