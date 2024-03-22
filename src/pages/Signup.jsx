@@ -33,6 +33,7 @@ const Signup = () => {
               <ToastContainer stacked toastClassName='dark-toast' />
             </div>
             <h3>Register for an account</h3>
+            {/* <p className='error'>{error}</p> */}
             <input
               type='text'
               name='username'
@@ -147,6 +148,9 @@ const Password = styled.section`
 `
 
 const Wrapper = styled.section`
+.error{
+  color: red;
+}
   main {
     display: flex;
     flex-direction: column;

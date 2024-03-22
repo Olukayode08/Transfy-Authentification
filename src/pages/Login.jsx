@@ -13,7 +13,7 @@ const Login = () => {
 
   return (
     <>
-      <Wrapper>
+      <LoginW>
         <main>
           <Logo className='logo'>
             <section>
@@ -25,10 +25,11 @@ const Login = () => {
               <ToastContainer stacked toastClassName='dark-toast' />
             </div>
             <h3>Login to your account</h3>
-
+            {/* <p className='error'>{error}</p> */}
             <input
               type='email'
               name='email'
+              autoComplete='off'
               value={formData.email}
               onChange={handleChange}
               placeholder='Email'
@@ -41,6 +42,7 @@ const Login = () => {
                 className='no-padding'
                 value={formData.password}
                 onChange={handleChange}
+                autoComplete='off'
                 placeholder='Your Password'
                 required
               />
@@ -63,7 +65,7 @@ const Login = () => {
             </Link>
           </form>
         </main>
-      </Wrapper>
+      </LoginW>
     </>
   )
 }
@@ -90,7 +92,7 @@ const Password = styled.section`
   }
 `
 
-const Wrapper = styled.section`
+const LoginW = styled.section`
   main {
     display: flex;
     flex-direction: column;
@@ -114,8 +116,12 @@ const Wrapper = styled.section`
     margin: 15px 0;
     text-align: center;
   }
+  .error {
+    color: red;
+    text-align: center;
+  }
+
   .password-field,
-  select,
   input {
     width: 90%;
     height: 32px;
@@ -128,6 +134,7 @@ const Wrapper = styled.section`
     letter-spacing: 0.1px;
     outline: none;
   }
+
   .button {
     margin: 15px 0;
     color: #fff;

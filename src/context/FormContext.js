@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useEffect } from 'react'
 import { firebaseAuth } from '../utils/Firebase'
 import {
   createUserWithEmailAndPassword,
@@ -51,13 +51,18 @@ const FormContext = ({ children }) => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
     return passwordRegex.test(password)
   }
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const notify = (error) => {
     toast(error)
+    setError(error)
   }
+  useEffect(() => {
+    setError('')
+  }, [formData.email, formData.password])
 
   function signUp(e) {
     e.preventDefault()
@@ -78,8 +83,17 @@ const FormContext = ({ children }) => {
         const user = userCredential.user
         setIsAuthenticated(true)
         setCurrentUser(user)
+        setFormData({
+          username: '',
+          email: '',
+          country: '',
+          phone: '',
+          password: '',
+          confirmPassword: '',
+        })
+    setError('')
+
         navigate('/dashboard')
-        setFormData('')
       })
       .catch((error) => {
         notify('Failed to create account!')
@@ -94,8 +108,17 @@ const FormContext = ({ children }) => {
         const user = userCredential.user
         setIsAuthenticated(true)
         setCurrentUser(user)
+            setFormData({
+              username: '',
+              email: '',
+              country: '',
+              phone: '',
+              password: '',
+              confirmPassword: '',
+            })
+    setError('')
+
         navigate('/dashboard')
-        setFormData('')
       })
       .catch(() => {
         notify('Failed to Login! Invalid email or password')
